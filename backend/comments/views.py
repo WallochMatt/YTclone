@@ -17,5 +17,14 @@ def get_all_comments(request, video_id):
 
 
 #WITH TOKEN
-# @api_view(["POST", "PUT"])
-# def
+@api_view(["POST", "PUT"])
+@permission_classes([IsAuthenticated])
+def comments_auth(request):
+    print(
+        'USER ', f"{request.user.id} {request.user.username} {request.user.email} "
+    )
+    if request.method == "POST":
+        serializer = CommentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
