@@ -15,3 +15,9 @@ def get_all_replies(request, comment):
         replies =  Reply.objects.filter(comment=comment)
         serializer = ReplySerializer(replies, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    if request.method == "POST":
+        serializer = ReplySerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_404_NOT_FOUND)
