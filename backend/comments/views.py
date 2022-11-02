@@ -27,6 +27,8 @@ def comments_auth(request):
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 @api_view(["PUT"])
 @permission_classes([IsAuthenticated])
