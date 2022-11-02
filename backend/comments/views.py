@@ -31,6 +31,7 @@ def comments_auth(request):
 @api_view(["PUT"])
 @permission_classes([IsAuthenticated])
 def edit_comment(request, pk):
+    print("In edit_comment")
     comment = get_object_or_404(Comment, pk=pk)
     serializer = CommentSerializer(comment, data=request.data)
     serializer.is_valid(raise_exception=True)
