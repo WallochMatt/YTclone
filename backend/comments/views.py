@@ -16,13 +16,9 @@ def get_all_comments(request, video_id):
     return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-#WITH TOKEN
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def comments_auth(request):
-    print(
-        'USER ', f"{request.user.id} {request.user.username} {request.user.email} "
-    )
     serializer = CommentSerializer(data=request.data)
     if serializer.is_valid(raise_exception=True):
         serializer.save(user=request.user)
@@ -33,7 +29,6 @@ def comments_auth(request):
 @api_view(["PUT"])
 @permission_classes([IsAuthenticated])
 def edit_comment(request, pk):
-    print("In edit_comment")
     comment = get_object_or_404(Comment, pk=pk)
     serializer = CommentSerializer(comment, data=request.data)
     serializer.is_valid(raise_exception=True)
