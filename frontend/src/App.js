@@ -6,6 +6,7 @@ import "./App.css";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -13,11 +14,47 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import axios from "axios";
+
+import React, { useEffect, useState } from 'react';
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function App() {
+  const [videos, setVideos] = useState([])
+
+
+  
+  async function getVideos(search){
+    console.log("getVideos, search: ", search)
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=);
+    console.log("getVideos response: ", response)
+    setVideos(response.data.items);
+  }
+  
+
+
+
+
+
+
+
+
+
   return (
     <div>
-      <Navbar />
+      <Navbar getVideos={getVideos} />
       <Routes>
         <Route
           path="/"
@@ -27,6 +64,9 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        <Route path="/search" element={<SearchPage />}/>
+
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
