@@ -16,7 +16,7 @@ const Navbar = (props) => {
       <ul>
         <li className="brand">
           <Link to="/" style={{ textDecoration: "none", color: "white" }}>
-            <b>React/Django JWT</b>
+            <b>uToob</b>
           </Link>
         </li>
         <li>

@@ -38,14 +38,11 @@ function App() {
   
   async function getVideos(search){
     console.log("getVideos, search: ", search)
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=`);
     console.log("getVideos response: ", response)
     setVideos(response.data.items);
   }
   
-
-
-
 
 
 
@@ -65,7 +62,7 @@ function App() {
           }
         />
 
-        <Route path="/search" element={<SearchPage />}/>
+        <Route path="/search" element={<SearchPage videos={videos}/>}/>
 
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
