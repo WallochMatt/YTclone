@@ -33,59 +33,28 @@ import React, { useState } from 'react';
 
 
 function App() {
-  const [videos, setVideos] = useState([        {
-    "kind": "youtube#searchResult",
-    "etag": "aJT0mrzdplLx5vD9HPsKvfia7kM",
-    "id": {
-        "kind": "youtube#video",
-        "videoId": "JZqg7wxlJeY"
-    },
-    "snippet": {
-        "publishedAt": "2022-11-03T17:43:49Z",
-        "channelId": "UCYbggI6qVceWa1_1dfH0hMA",
-        "title": "FUNNY CAT MEMES COMPILATION OF 2022 PART 66",
-        "description": "Try Not To Laugh Challenge is a hilarious compilation of Funny and cute Animal Videos, featuring some of the funniest cats ...",
-        "thumbnails": {
-            "default": {
-                "url": "https://i.ytimg.com/vi/JZqg7wxlJeY/default.jpg",
-                "width": 120,
-                "height": 90
-            },
-            "medium": {
-                "url": "https://i.ytimg.com/vi/JZqg7wxlJeY/mqdefault.jpg",
-                "width": 320,
-                "height": 180
-            },
-            "high": {
-                "url": "https://i.ytimg.com/vi/JZqg7wxlJeY/hqdefault.jpg",
-                "width": 480,
-                "height": 360
-            }
-        },
-        "channelTitle": "Meowthemall",
-        "liveBroadcastContent": "none",
-        "publishTime": "2022-11-03T17:43:49Z"
-    }
-},])
-  const [videoId, setVideoId] = useState('')
+  const [videos, setVideos] = useState([])
+  const [selectedVideo, setSelectedVideo] = useState({})
+  
+  const [relatedVideos, setRelatedVideos] = useState([])
 
 
   
   async function getVideos(search){
     console.log("getVideos, search: ", search)
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=&part=snippet`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=AIzaSyD9JBQue8uxCq1KJdzzpFlCi5_m6dBZMrg&part=snippet`);
     console.log("getVideos response: ", response)
     setVideos(response.data.items);
   }
-  
 
-
-  function changeId(videoId){
-    console.log('changeId function videoId', videoId)
-    setVideoId(videoId)
+  async function getRelatedVideos(videoId){
+    console.log("getRelatedVideos parameter", videoId)
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=AIzaSyD9JBQue8uxCq1KJdzzpFlCi5_m6dBZMrg&part=snippet`)
+    console.log('setRelatedVideos change', relatedVideos)
+    setRelatedVideos(response.data.items)
   }
 
-
+  
 
   return (
     <div>
@@ -100,8 +69,8 @@ function App() {
           }
         />
 
-        <Route path="/search" element={<SearchPage videos={videos} changeId={changeId} />}/>
-        <Route path="/watch/:videoId" element={<VideoPage videos={videos} videoId={videoId}/>}/>
+        <Route path="/search" element={<SearchPage setSelectedVideo={setSelectedVideo} videos={videos} />}/>
+        <Route path="/watch/:videoId" element={<VideoPage selectedVideo={selectedVideo} setSelectedVideo={setSelectedVideo} videos={videos} getRelatedVideos={getRelatedVideos} relatedVideos={relatedVideos} />}/>
 
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
