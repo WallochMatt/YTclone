@@ -1,13 +1,14 @@
-import SearchBar from "../../components/SearchBar/SearchBar";
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 
 
 const SearchPage = (props) => {
 
-    function handleClick(event, videoId){
-        event.preventDefault()
-        props.changeId(videoId)
-    }
+    // function handleClick(event, videoId){
+    //     console.log('handleClick videoId', videoId)
+    //     event.preventDefault()
+    //     props.changeId(videoId)
+    //     Navigate('/watch')
+    // }
 
 
     return (
@@ -17,7 +18,7 @@ const SearchPage = (props) => {
                 {props.videos.map((video) => {
                     console.log(video)
                     return(
-                        <Link to='/watch' onClick={(event) => handleClick(event, video.id.videoId)}>
+                        <Link to={`/watch/${video.id.videoId}`} >
                             {/* <li onClick={(event) => handleClick(event, video.id.videoId)}> */}
                             <li>
                                 <p>{video.snippet.title}</p>

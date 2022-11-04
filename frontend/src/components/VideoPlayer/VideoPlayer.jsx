@@ -1,8 +1,8 @@
 
 
 const VideoPlayer = (props) => {
-
-    let test= `https://www.youtube.com/embed/${props.playVideo}?autoplay=1`
+    console.log('videoPlayer video_id', props.video_id)
+    let test= `https://www.youtube.com/embed/${props.video_id}?autoplay=1`
 
 
     return(

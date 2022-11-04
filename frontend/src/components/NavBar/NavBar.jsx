@@ -20,7 +20,7 @@ const Navbar = (props) => {
           </Link>
         </li>
         <li>
-          <SearchBar getVideos={props.getVideos} />
+          <SearchBar getVideos={props.getVideos} changeId={props.changeId} />
         </li>
         <li>
           {user ? (
