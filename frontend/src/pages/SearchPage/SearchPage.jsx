@@ -3,10 +3,9 @@ import { Link, useNavigate } from "react-router-dom"
 
 const SearchPage = (props) => {
 
-    let navigate = useNavigate()
+    let navigate = useNavigate();
         
     function handleClick(event, video){
-        console.log(video);
         event.preventDefault();
         props.setSelectedVideo(video);
         navigate(`/watch/${video.id.videoId}`);

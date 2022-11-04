@@ -1,6 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import keys from "./API_Keys.json"
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -20,18 +21,6 @@ import axios from "axios";
 import React, { useState } from 'react';
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 function App() {
   const [videos, setVideos] = useState([])
   const [selectedVideo, setSelectedVideo] = useState({})
@@ -42,14 +31,14 @@ function App() {
   
   async function getVideos(search){
     console.log("getVideos, search: ", search)
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=AIzaSyD9JBQue8uxCq1KJdzzpFlCi5_m6dBZMrg&part=snippet`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=${keys.googleAPIKey}&part=snippet`);
     console.log("getVideos response: ", response)
     setVideos(response.data.items);
   }
 
   async function getRelatedVideos(videoId){
     console.log("getRelatedVideos parameter", videoId)
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=AIzaSyD9JBQue8uxCq1KJdzzpFlCi5_m6dBZMrg&part=snippet`)
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${videoId}&type=video&key=${keys.googleAPIKey}&part=snippet`)
     console.log('setRelatedVideos change', relatedVideos)
     setRelatedVideos(response.data.items)
   }
