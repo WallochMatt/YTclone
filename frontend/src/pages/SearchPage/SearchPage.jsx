@@ -14,9 +14,9 @@ const SearchPage = (props) => {
     return (
         <div>
             <ul> 
-                {props.videos.map((video) => {
+                {props.videos.map((video, index) => {
                     return(                    
-                            <li>
+                            <li key="index">
                                 <button onClick={(e) => handleClick(e, video)}><p>{video.snippet.title}</p>
                                 <img src={video.snippet.thumbnails.medium.url} /></button>
                             </li>                    

@@ -1,12 +1,20 @@
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer"
-import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import CommentList from '../../components/CommentList/CommentList'
+import CommentForm from "../../components/CommentForm/CommentForm";
+import PrivateRoute from "../../utils/PrivateRoute";
+import { Routes } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
+
 
 const VideoPage = (props) => {
     let navigate = useNavigate();
+
+    const [user, token] = useAuth()
+
     const {videoId} = useParams();
     const [comments, setComments] = useState([{
         "user": {
@@ -30,10 +38,11 @@ const VideoPage = (props) => {
         "likes": 10,
         "dislikes": 0
     }]);
-     
+
     useEffect(() => {
         props.getRelatedVideos(videoId);
         videoComments();
+        console.log(videoId)
         
     }, []);
 
@@ -48,13 +57,22 @@ const VideoPage = (props) => {
     //then calls navigate() to take user to `/watch/${video.id.videoId}`
 
     async function videoComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/api/comments/open/${videoId}`);
+        let response = await axios.get(`http://127.0.0.1:8000/api/comments/open/${videoId}/`);
         setComments(response.data);
     }
 
+
+
+
+
+
+
+
+
+
     return ( 
         <div>
-            <div><VideoPlayer video_id={videoId}/></div>
+            <div><VideoPlayer videoId={videoId}/></div>
             <div>
                 {props.selectedVideo.snippet.title}
                 {props.selectedVideo.snippet.description}
@@ -70,10 +88,23 @@ const VideoPage = (props) => {
                 })}
             </ul>
             <div>
-            <CommentList comments={comments} />
-            </div>
+                {!user ?
+                    <p>Please sign in or register to post</p> :
+                    <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
+                    // <Routes>
+                    //     <Route 
+                    //         path="/watch/:videoId" 
+                    //         element={
+                    //             <PrivateRoute>
+                    //                 <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
+                    //             </PrivateRoute>
+                    //         }
+                    //     />
+                    // </Routes>
+                }
+                </div>
+                <CommentList comments={comments} />
         </div>
-
     );
 }
 
