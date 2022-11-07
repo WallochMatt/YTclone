@@ -2,6 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import keys from "./API_Keys.json"
+import { useNavigate }  from "react-router-dom";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
@@ -22,11 +23,12 @@ import React, { useState } from 'react';
 
 
 function App() {
-  const [videos, setVideos] = useState([])
-  const [selectedVideo, setSelectedVideo] = useState({})
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState({});
   
-  const [relatedVideos, setRelatedVideos] = useState([])
+  const [relatedVideos, setRelatedVideos] = useState([]);
 
+  let navigate = useNavigate();
 
   
   async function getVideos(search){
@@ -34,6 +36,7 @@ function App() {
     let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=${keys.googleAPIKey}&part=snippet`);
     console.log("getVideos response: ", response)
     setVideos(response.data.items);
+    navigate('/search')
   }
 
   async function getRelatedVideos(videoId){
@@ -43,7 +46,6 @@ function App() {
     setRelatedVideos(response.data.items)
   }
 
-  
 
   return (
     <div>
@@ -53,16 +55,16 @@ function App() {
           path="/"
           element={
             <PrivateRoute>
-              <HomePage />
+              <HomePage getVideos={getVideos}/>
             </PrivateRoute>
           }
         />
 
         <Route path="/search" element={<SearchPage setSelectedVideo={setSelectedVideo} videos={videos} />}/>
-        <Route path="/watch/:videoId" element={<VideoPage selectedVideo={selectedVideo} setSelectedVideo={setSelectedVideo} videos={videos} getRelatedVideos={getRelatedVideos} relatedVideos={relatedVideos} />}/>
+        <Route path="/watch/:videoId" element={<VideoPage selectedVideo={selectedVideo} setSelectedVideo={setSelectedVideo} videos={videos} getRelatedVideos={getRelatedVideos} relatedVideos={relatedVideos} getVideos={getVideos}/>}/>
 
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage getVideos={getVideos}/>} />
+        <Route path="/login" element={<LoginPage getVideos={getVideos}/>} />
       </Routes>
       <Footer />
     </div>
