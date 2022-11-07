@@ -10,35 +10,13 @@ import useAuth from "../../hooks/useAuth";
 import "./VideoPage.css";
 
 
-
 const VideoPage = (props) => {
     let navigate = useNavigate();
 
     const [user, token] = useAuth()
 
     const {videoId} = useParams();
-    const [comments, setComments] = useState([{
-        "user": {
-            "id": 2,
-            "password": "pbkdf2_sha256$390000$gI0A1VnV2GgMwQ0LPhEFDc$eTO83cZkKFNfFO8l5SFhrjugHfNohjAD5TfIiJPoumA=",
-            "last_login": null,
-            "is_superuser": false,
-            "username": "turo",
-            "first_name": "Arturo",
-            "last_name": "Diaz",
-            "email": "arturo@devcodecamp.com",
-            "is_staff": false,
-            "is_active": true,
-            "date_joined": "2022-11-01T19:06:24.303564Z",
-            "groups": [],
-            "user_permissions": []
-        },
-        "user_id": 2,
-        "video_id": "TJ5XsyPOv0o&t=88s",
-        "text": "Woo Dancing!",
-        "likes": 10,
-        "dislikes": 0
-    }]);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         props.getRelatedVideos(videoId);
@@ -61,8 +39,6 @@ const VideoPage = (props) => {
         let response = await axios.get(`http://127.0.0.1:8000/api/comments/open/${videoId}/`);
         setComments(response.data);
     }
-
-
 
 
     return ( 

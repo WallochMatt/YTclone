@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import useCustomForm from "../../hooks/useCustomForm"
 
 const CommentForm = (props) => {
@@ -25,7 +24,6 @@ const CommentForm = (props) => {
         catch(error){
             console.log(error.message)
         }
-
     };
 
 
@@ -34,7 +32,7 @@ const CommentForm = (props) => {
             <div>
                 <form>
                     <div>
-                        <label>Post a comment</label>
+                        <label>Post a comment: </label>
                         <input
                             type="text"
                             name="text"

@@ -12,5 +12,5 @@ const Comment = (props) => {
         </div>
     );
 }
-
+//^ Make thr
 export default Comment;

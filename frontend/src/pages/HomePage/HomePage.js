@@ -10,7 +10,7 @@ const HomePage = () => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   const [cars, setCars] = useState([]);
-
+  
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -28,7 +28,7 @@ const HomePage = () => {
   }, [token]);
   return (
     <div className="container">
-      <h1>Home Page for {user.username}!</h1>
+      <h1>Welcome back, {user.username}!</h1>
       {cars &&
         cars.map((car) => (
           <p key={car.id}>

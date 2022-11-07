@@ -7,7 +7,7 @@ const VideoPlayer = (props) => {
     
 
     return(
-        <iframe id="ytplayer" type="text/html" width="640" height="360"
+        <iframe id="ytplayer" type="text/html" width="960" height="540"
             src={test}
             frameBorder="0">
         </iframe>
