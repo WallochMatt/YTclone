@@ -33,7 +33,7 @@ function App() {
   
   async function getVideos(search){
     console.log("getVideos, search: ", search)
-    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=${keys.googleAPIKey}&part=snippet`);
+    let response = await axios.get(`https://www.googleapis.com/youtube/v3/search?q=${search}&key=${keys.googleAPIKey}&part=snippet&maxResults=12`);
     console.log("getVideos response: ", response)
     setVideos(response.data.items);
     navigate('/search')

@@ -78,9 +78,9 @@ const VideoPage = (props) => {
                 {props.selectedVideo.snippet.description}
             </div>
             <ul>
-                {props.relatedVideos.map((video) => {
+                {props.relatedVideos.map((video, index) => {
                     return(
-                            <li>
+                            <li key={index}>
                                 <button onClick={(e) => handleClick(e, video)}><p>{video.snippet.title}</p>
                                 <img src={video.snippet.thumbnails.medium.url} /></button>
                             </li>

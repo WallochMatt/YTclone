@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
+import "./SearchPage.css"
 
 
 const SearchPage = (props) => {
@@ -13,11 +14,11 @@ const SearchPage = (props) => {
 
     return (
         <div>
-            <ul> 
+            <ul className="wrapper"> 
                 {props.videos.map((video, index) => {
                     return(                    
-                            <li key="index">
-                                <button onClick={(e) => handleClick(e, video)}><p>{video.snippet.title}</p>
+                            <li key={index} >
+                                <button className="vid-space" onClick={(e) => handleClick(e, video)}><p className="order">{video.snippet.title}</p>
                                 <img src={video.snippet.thumbnails.medium.url} /></button>
                             </li>                    
                     )

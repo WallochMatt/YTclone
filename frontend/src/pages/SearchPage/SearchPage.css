@@ -1,0 +1,23 @@
+button {
+    max-width: 100%;
+    background-color: #858585;
+    border: 2px solid transparent;
+    color: white;
+    border-radius: 20px;
+}
+
+.vid-space{
+    margin: 1em;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+.order {
+    max-width: fit-content;
+}
