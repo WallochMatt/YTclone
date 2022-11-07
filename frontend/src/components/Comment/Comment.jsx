@@ -1,14 +1,16 @@
-
+import "./Comment.css"
 
 const Comment = (props) => {
     return (
-        <div>
+        <div className="blurb shadow">
             <p>User: {props.user}</p>
             <p>Comment: {props.text}</p>
-            <p>Likes: {props.likes}</p>
-            <p>Dislikes: {props.dislikes}</p>
+            <div className="likes">
+                <p>Likes: {props.likes}</p>
+                <p>Dislikes: {props.dislikes}</p>
+            </div>     
         </div>
-      );
+    );
 }
- 
+
 export default Comment;

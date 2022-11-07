@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import CommentList from '../../components/CommentList/CommentList'
 import CommentForm from "../../components/CommentForm/CommentForm";
-import PrivateRoute from "../../utils/PrivateRoute";
-import { Routes } from "react-router-dom";
+
 import useAuth from "../../hooks/useAuth";
+import "./VideoPage.css";
+
 
 
 const VideoPage = (props) => {
@@ -64,46 +65,38 @@ const VideoPage = (props) => {
 
 
 
-
-
-
-
-
-
     return ( 
         <div>
-            <div><VideoPlayer videoId={videoId}/></div>
-            <div>
-                {props.selectedVideo.snippet.title}
-                {props.selectedVideo.snippet.description}
-            </div>
-            <ul>
-                {props.relatedVideos.map((video, index) => {
-                    return(
-                            <li key={index}>
-                                <button onClick={(e) => handleClick(e, video)}><p>{video.snippet.title}</p>
-                                <img src={video.snippet.thumbnails.medium.url} /></button>
-                            </li>
-                    )
-                })}
-            </ul>
-            <div>
-                {!user ?
-                    <p>Please sign in or register to post</p> :
-                    <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
-                    // <Routes>
-                    //     <Route 
-                    //         path="/watch/:videoId" 
-                    //         element={
-                    //             <PrivateRoute>
-                    //                 <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
-                    //             </PrivateRoute>
-                    //         }
-                    //     />
-                    // </Routes>
-                }
+            <div className="side-by-side">
+
+                <div>
+                    <div className="player-place"><VideoPlayer videoId={videoId}/></div>
+                    <div className="title-align">
+                        {props.selectedVideo.snippet.title} <br/>
+                        {props.selectedVideo.snippet.description}
+                    </div>
+                    <div className="post-align">
+                        {!user ?
+                            <p>Please sign in or register to post</p> :
+                            <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
+                        }
+                    </div>
+                    <CommentList comments={comments}/>
                 </div>
-                <CommentList comments={comments} />
+
+
+
+                <ul className="suggestions">
+                    {props.relatedVideos.map((video, index) => {
+                        return(
+                                <li key={index}>
+                                    <button className="vid-space" onClick={(e) => handleClick(e, video)}><p className="order">{video.snippet.title}</p>
+                                    <img src={video.snippet.thumbnails.medium.url} /></button>
+                                </li>
+                        )
+                    })}
+                </ul>
+            </div>
         </div>
     );
 }

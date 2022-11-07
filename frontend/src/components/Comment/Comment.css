@@ -1,0 +1,19 @@
+.likes{
+    display: flex;
+    flex-direction: row;
+}
+
+.blurb{
+    padding: 1em;
+    background-color: #858585;
+    border-radius: 1em;
+}
+
+.shadow{
+    box-shadow: 10px 10px 1px 1px #CC2A4B inset;
+    margin: 1em;
+}
+
+.sug-line-up{
+    margin: 5em 10em;
+}
