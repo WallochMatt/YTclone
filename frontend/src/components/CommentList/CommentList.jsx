@@ -6,7 +6,7 @@ const CommentList = (props) => {
         <div className='post-align'>
             {props.comments.map((comment) => {
                 return(
-                    <Comment user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} />
+                    <Comment user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} id={comment.id} />
                 )
             })}
         </div>

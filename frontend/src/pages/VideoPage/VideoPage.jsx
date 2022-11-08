@@ -12,23 +12,19 @@ import "./VideoPage.css";
 
 const VideoPage = (props) => {
     let navigate = useNavigate();
-
     const [user, token] = useAuth()
-
     const {videoId} = useParams();
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
         props.getRelatedVideos(videoId);
         videoComments();
-        console.log(videoId)
         
     }, []);
 
     function handleClick(event, video){
         event.preventDefault();
         props.setSelectedVideo(video);
-        console.log("video we want passed", video);
         navigate(`/watch/${video.id.videoId}`);
     }
     //function gets called when a video thumbnail is clicked on
@@ -57,7 +53,7 @@ const VideoPage = (props) => {
                             <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
                         }
                     </div>
-                    <CommentList comments={comments}/>
+                    <CommentList comments={comments} />
                 </div>
 
 

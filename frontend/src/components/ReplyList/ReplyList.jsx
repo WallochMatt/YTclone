@@ -1,8 +1,14 @@
+import Reply from "../Reply/Reply"
 
-
-const ReplyList = ([props]) => {
+const ReplyList = (props) => {
     return ( 
-        pass
+        <div>
+            {props.replies.map((reply) => {
+                return(
+                    <Reply user={reply.user.username} text={reply.text} />
+                )
+            })}
+        </div>
      );
 }
  
