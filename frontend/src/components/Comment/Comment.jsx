@@ -3,6 +3,7 @@ import "./Comment.css"
 import { useEffect, useState } from "react";
 import ReplyList from "../ReplyList/ReplyList";
 import useAuth from "../../hooks/useAuth";
+import ReplyForm from '../ReplyForm/ReplyForm';
 
 const Comment = (props) => {
     const [replies, setReplies] = useState([]);
@@ -28,12 +29,19 @@ const Comment = (props) => {
             <p>User: {props.user}</p>
             <p>Comment: {props.text}</p>
             <div className="likes">
-                <p>Likes: {props.likes}</p>
+                <p className="text-spacing" >Likes: {props.likes}</p>
                 <p>Dislikes: {props.dislikes}</p>
             </div>     
             {!user ?
-                <p>Please sign in or register to view replies</p>:
-                <ReplyList replies={replies} />
+                <p></p>:
+                <div>
+                    <div>
+                        <ReplyList replies={replies} />
+                    </div>
+                    <div>
+                        <ReplyForm getReplies={getReplies} id={props.id} token={token} />
+                    </div>
+                </div>
             }
         </div>
     );

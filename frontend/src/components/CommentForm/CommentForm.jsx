@@ -1,5 +1,6 @@
 import axios from "axios";
 import useCustomForm from "../../hooks/useCustomForm"
+import './CommentForm.css'
 
 const CommentForm = (props) => {
     let initialValues = {
@@ -30,17 +31,16 @@ const CommentForm = (props) => {
 
         return (
             <div>
-                <form>
+                <form className="commentForm" >
                     <div>
-                        <label>Post a comment: </label>
                         <input
+                            className="commentInput"
+                            placeholder="Post a Comment"
                             type="text"
                             name="text"
                             value={formData.text}
                             onChange={handleInputChange}
                         />
-                    </div>
-                    <div>
                         <button onClick={handleSubmit}>POST</button>
                     </div>
                 </form>

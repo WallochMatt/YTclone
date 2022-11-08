@@ -4,9 +4,9 @@ import "./CommentList.css"
 const CommentList = (props) => {
     return (  
         <div className='post-align'>
-            {props.comments.map((comment) => {
+            {props.comments.slice(0).reverse().map((comment) => {
                 return(
-                    <Comment user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} id={comment.id} />
+                    <Comment videoComments={props.videoComments} user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} id={comment.id} />
                 )
             })}
         </div>

@@ -1,5 +1,5 @@
 .player-place{
-    margin: 5em 0em 5em 5em;
+    margin: 5em 0em 1em 5em;
 }
 
 .side-by-side{
@@ -16,7 +16,8 @@
 }
 
 .title-align{
-    margin-left: 10em;
+    margin-left: 5em;
+    color: white;
 }
 
 .post-align{
@@ -30,4 +31,9 @@
 
 .order {
     max-width: fit-content;
+}
+
+.prompt{
+    margin-left: 1em;
+    color: white;
 }

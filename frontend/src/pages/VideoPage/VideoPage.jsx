@@ -44,16 +44,16 @@ const VideoPage = (props) => {
                 <div>
                     <div className="player-place"><VideoPlayer videoId={videoId}/></div>
                     <div className="title-align">
-                        <h2>{props.selectedVideo.snippet.title}</h2> <br/>
+                        <h2 style={{margin: '6px;'}} >{props.selectedVideo.snippet.title}</h2>
                         {props.selectedVideo.snippet.description}
                     </div>
                     <div className="post-align">
                         {!user ?
-                            <p>Please sign in or register to post</p> :
+                            <p className="prompt" >Please sign in or register to post and see replies</p> :
                             <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
                         }
                     </div>
-                    <CommentList comments={comments} />
+                    <CommentList videoComments={videoComments} comments={comments} />
                 </div>
 
 
