@@ -1,5 +1,6 @@
 //axios call 
 import React, { useState } from 'react';
+import "./SearchBar.css"
 
 
 const SearchBar = (props) => {
@@ -14,8 +15,7 @@ const SearchBar = (props) => {
     return ( 
         <form onSubmit={(e) => handleSubmit(e)}>
             <div>
-                <label>Search</label>
-                <input value={search} onChange={(event) => setSearch(event.target.value)}></input>
+                <input placeholder='Search' className='searchinput' value={search} onChange={(event) => setSearch(event.target.value)}></input>
             </div>
         </form>
     )

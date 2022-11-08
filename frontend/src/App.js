@@ -13,10 +13,8 @@ import VideoPage from "./pages/VideoPage/VideoPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 
 // Util Imports
-import PrivateRoute from "./utils/PrivateRoute";
 import axios from "axios";
 
 import React, { useState } from 'react';
@@ -51,22 +49,12 @@ function App() {
     <div>
       <Navbar getVideos={getVideos}/>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <HomePage getVideos={getVideos} videos={videos} setSelectedVideo={setSelectedVideo} setVideos={setVideos}/>
-            </PrivateRoute>
-          }
-        />
-
+        <Route path="/" element={<HomePage getVideos={getVideos} videos={videos} setSelectedVideo={setSelectedVideo} setVideos={setVideos}/>} />
         <Route path="/search" element={<SearchPage setSelectedVideo={setSelectedVideo} videos={videos} />}/>
         <Route path="/watch/:videoId" element={<VideoPage selectedVideo={selectedVideo} setSelectedVideo={setSelectedVideo} videos={videos} getRelatedVideos={getRelatedVideos} relatedVideos={relatedVideos} getVideos={getVideos}/>}/>
-
         <Route path="/register" element={<RegisterPage getVideos={getVideos}/>} />
         <Route path="/login" element={<LoginPage getVideos={getVideos}/>} />
       </Routes>
-      <Footer />
     </div>
   );
 }

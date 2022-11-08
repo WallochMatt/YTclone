@@ -33,3 +33,7 @@ li {
   cursor: pointer;
   font-size: 2rem;
 }
+
+.loginButton{
+  margin: 0px 6px;
+}

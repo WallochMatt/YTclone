@@ -12,6 +12,7 @@ const HomePage = (props) => {
   //TODO: Add an AddCars Page to add a car for a logged in user's garage
   const [user, token] = useAuth();
   let navigate = useNavigate();
+  let username
 
   
   function handleClick(event, video){
@@ -28,12 +29,11 @@ const HomePage = (props) => {
   useEffect(() => {
     getHomeVids()
 
-    
   }, []);
 
   return (
     <div>
-      <h1 className="home-text">Welcome Back {user.username}! Check Out What's Trending!</h1>
+      <h1 className="home-text">Welcome To uToob! Check Out What's Trending!</h1>
       <ul className="wrapper"> 
                 {props.videos.map((video, index) => {
                     return(                    

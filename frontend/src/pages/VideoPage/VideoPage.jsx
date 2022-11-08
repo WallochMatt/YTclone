@@ -48,7 +48,7 @@ const VideoPage = (props) => {
                 <div>
                     <div className="player-place"><VideoPlayer videoId={videoId}/></div>
                     <div className="title-align">
-                        {props.selectedVideo.snippet.title} <br/>
+                        <h2>{props.selectedVideo.snippet.title}</h2> <br/>
                         {props.selectedVideo.snippet.description}
                     </div>
                     <div className="post-align">
@@ -67,7 +67,7 @@ const VideoPage = (props) => {
                         return(
                                 <li key={index}>
                                     <button className="vid-space" onClick={(e) => handleClick(e, video)}><p className="order">{video.snippet.title}</p>
-                                    <img src={video.snippet.thumbnails.medium.url} /></button>
+                                    <img src={video.snippet.thumbnails.medium.url} alt="Video Thumbnail" /></button>
                                 </li>
                         )
                     })}
