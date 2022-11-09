@@ -6,7 +6,7 @@ const CommentList = (props) => {
         <div className='post-align'>
             {props.comments.slice(0).reverse().map((comment) => {
                 return(
-                    <Comment videoComments={props.videoComments} user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} id={comment.id} />
+                    <Comment videoId={props.videoId} videoComments={props.videoComments} user={comment.user.username} text={comment.text} likes={comment.likes} dislikes={comment.dislikes} id={comment.id} />
                 )
             })}
         </div>

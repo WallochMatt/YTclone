@@ -1,7 +1,6 @@
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer"
-import { useParams, useNavigate, useSearchParams, Route } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import CommentList from '../../components/CommentList/CommentList'
 import CommentForm from "../../components/CommentForm/CommentForm";
@@ -53,7 +52,7 @@ const VideoPage = (props) => {
                             <CommentForm videoComments={videoComments} videoId={videoId} user={user} token={token}/>
                         }
                     </div>
-                    <CommentList videoComments={videoComments} comments={comments} />
+                    <CommentList videoId={videoId} videoComments={videoComments} comments={comments} />
                 </div>
 
 
