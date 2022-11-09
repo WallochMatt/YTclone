@@ -38,8 +38,8 @@ const HomePage = (props) => {
                 {props.videos.map((video, index) => {
                     return(                    
                             <li key={index} >
-                                <button className="vid-space" onClick={(e) => handleClick(e, video)}><p className="order">{video.snippet.title}</p>
-                                <img src={video.snippet.thumbnails.medium.url} /></button>
+                                <button className="button1" onClick={(e) => handleClick(e, video)}><p className="order">{video.snippet.title}</p>
+                                <img className="imgtag" src={video.snippet.thumbnails.medium.url} /></button>
                             </li>                    
                     )
                 })}

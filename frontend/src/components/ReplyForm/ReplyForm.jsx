@@ -32,6 +32,7 @@ const ReplyForm = (props) => {
             <form>
                 <div className='replyinput'>
                     <input
+                    className='input-spacing'
                     placeholder='Post A Reply!'
                     type='text'
                     name='text'

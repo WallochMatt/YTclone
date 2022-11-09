@@ -1,3 +1,7 @@
 .replyinput{
     text-align: end;
 }
+
+.input-spacing{
+    margin: 0.5em;
+}

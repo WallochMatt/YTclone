@@ -6,8 +6,17 @@ button {
     border-radius: 20px;
 }
 
-.vid-space{
+
+.imgtag{
+    border-radius: 10px;
+}
+
+.button1{
     margin: 1em;
+}
+
+.button1-hover{
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 .wrapper {
