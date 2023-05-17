@@ -1,0 +1,35 @@
+version: '3.1'
+services:
+  ytClone-database:
+    build: ./database
+    image: wallochferm/yt-clone-database:1.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    volumes:
+      - yt-db-data:/var/lib/sql
+      
+
+  ytClone-backend:
+    build: ./backend
+    image: wallochferm/yt-clone-backend:1.0
+    ports:
+      - 8000:8000
+    depends_on: 
+      - "ytClone-database"
+    restart: always
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver"
+
+  ytClone-frontend:
+    build: ./frontend
+    image: wallochferm/yt-clone-frontend:1.0
+    ports: 
+      - 80:80
+    depends_on:
+      - "ytClone-backend"
+      
+volumes:
+  yt-db-data:
