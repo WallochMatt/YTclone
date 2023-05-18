@@ -2,9 +2,9 @@ version: '3.1'
 services:
   ytClone-database:
     # build: ./database
-    image: wallochferm/yt-clone-database:1.0
+    image: wallochferm/yt-clone-database:1.1
     ports:
-      - 3307:3306
+      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root
     restart: always
@@ -14,7 +14,7 @@ services:
 
   ytClone-backend:
     # build: ./backend
-    image: wallochferm/yt-clone-backend:1.0
+    image: wallochferm/yt-clone-backend:1.1
     ports:
       - 8000:8000
     depends_on: 
@@ -25,12 +25,12 @@ services:
 
   ytClone-frontend:
     # build: ./frontend
-    image: wallochferm/yt-clone-frontend:1.0
+    image: wallochferm/yt-clone-frontend:1.1
     ports: 
-      - 3001:3000
+      - 80:80
     depends_on:
       - "ytClone-backend"
-    restart: always
+    # restart: always
       
 volumes:
   yt-db-data:
