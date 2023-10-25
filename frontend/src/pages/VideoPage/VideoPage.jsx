@@ -31,7 +31,7 @@ const VideoPage = (props) => {
     //then calls navigate() to take user to `/watch/${video.id.videoId}`
 
     async function videoComments(){
-        let response = await axios.get(`http://127.0.0.1:8000/api/comments/open/${videoId}/`);
+        let response = await axios.get(`http://3.129.45.197:8000/api/comments/open/${videoId}/`);
         setComments(response.data);
     }
 

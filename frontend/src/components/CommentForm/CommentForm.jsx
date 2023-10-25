@@ -13,7 +13,7 @@ const CommentForm = (props) => {
 
     async function makePost(){
         try{
-            let response = await axios.post(`http://127.0.0.1:8000/api/comments/`, formData, {
+            let response = await axios.post(`http://3.129.45.197:8000/api/comments/`, formData, {
                 headers: {
                     Authorization: 'Bearer ' + props.token
                 }

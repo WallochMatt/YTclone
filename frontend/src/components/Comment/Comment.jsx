@@ -28,7 +28,7 @@ const Comment = (props) => {
 
     async function getReplies(){
         console.log("Comment ID", props.id);
-        let response = await axios.get(`http://127.0.0.1:8000/api/replies/${props.id}/`,  {
+        let response = await axios.get(`http://3.129.45.197:8000/api/replies/${props.id}/`,  {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -44,7 +44,7 @@ const Comment = (props) => {
             likes: likes + 1
         })
         console.log("inside async addLikes function", thumbsUp)
-        let response = await axios.put(`http://127.0.0.1:8000/api/comments/user/${props.id}/`, thumbsUp, {
+        let response = await axios.put(`http://3.129.45.197:8000/api/comments/user/${props.id}/`, thumbsUp, {
             headers: {
                 Authorization: "Bearer " + token
             }
@@ -62,7 +62,7 @@ const Comment = (props) => {
             dislikes: dislikes + 1
         })
         console.log("inside async addDislikes function", thumbsDown)
-        let response = await axios.put(`http://127.0.0.1:8000/api/comments/user/${props.id}/`, thumbsDown, {
+        let response = await axios.put(`http://3.129.45.197:8000/api/comments/user/${props.id}/`, thumbsDown, {
             headers: {
                 Authorization: "Bearer " + token
             }

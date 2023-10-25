@@ -13,7 +13,7 @@ const ReplyForm = (props) => {
 
     async function makeReply(){
         try {
-            let response = await axios.post(`http://127.0.0.1:8000/api/replies/${props.id}/`, formData, {
+            let response = await axios.post(`http://3.129.45.197:8000/api/replies/${props.id}/`, formData, {
                 headers: {
                     Authorization: "Bearer " + props.token
                 }

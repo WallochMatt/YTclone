@@ -25,7 +25,7 @@ services:
 
   ytClone-frontend:
     # build: ./frontend
-    image: wallochferm/yt-clone-frontend:1.1
+    image: wallochferm/yt-clone-frontend:1.2
     ports: 
       - 80:80
     depends_on:
